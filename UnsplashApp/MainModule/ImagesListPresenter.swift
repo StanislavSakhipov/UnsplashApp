@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MainPresenter {
+final class ImagesListPresenter {
     
     var view: UIViewController
     let networkService: NetworkServiceProtocol

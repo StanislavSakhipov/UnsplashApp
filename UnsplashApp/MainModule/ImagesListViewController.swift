@@ -7,9 +7,11 @@
 
 import UIKit
 
-final class ViewController: UIViewController {
+final class ImageListViewController: UIViewController {
 
-    var mainPresenter: MainPresenter!
+    private var presenter: ImagesListPresenter!
+    private let viewCellIdentifier = "cellIdentifier"
+    let assemblyImageCell = ImageCellAssembly()
     
     private let searchTextField: UITextField = {
         let searchTextField = UITextField()
@@ -19,24 +21,15 @@ final class ViewController: UIViewController {
         return searchTextField
     }()
     
-    private let viewCellIdentifier = "cellIdentifier"
-    
     private lazy var imagesCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-//        let imagesCollection = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        //layout.translatesAutoresizingMaskIntoConstraints = false
-        //layout.backgroundColor = .red
-        layout.itemSize = CGSize(width: 400, height: 600)
-        //layout.delegate = self
-        //layout.dataSource = self
-        //layout.register(Cell.self, forCellWithReuseIdentifier: viewCellIdentifier)
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        mainPresenter.getImagesUrls()
+        presenter.getImagesUrls()
         setupUI()
         DispatchQueue.main.async {
             self.imagesCollection.reloadData()
@@ -50,7 +43,7 @@ final class ViewController: UIViewController {
         imagesCollection.backgroundColor = .red
         imagesCollection.delegate = self
         imagesCollection.dataSource = self
-        imagesCollection.register(Cell.self, forCellWithReuseIdentifier: viewCellIdentifier)
+        imagesCollection.register(ImageCell.self, forCellWithReuseIdentifier: viewCellIdentifier)
         imagesCollection.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
@@ -67,35 +60,42 @@ final class ViewController: UIViewController {
 
 }
 
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mainPresenter.arrayImage.count
+        return presenter.arrayImage.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = imagesCollection.dequeueReusableCell(withReuseIdentifier: viewCellIdentifier, for: indexPath) as?  Cell
+        guard let cell = imagesCollection.dequeueReusableCell(withReuseIdentifier: viewCellIdentifier, for: indexPath) as?  ImageCell
         else {return UICollectionViewCell()}
-        let url = mainPresenter.arrayImage[indexPath.item].urls.small
-        cell.currentURL = url
-        if cell.currentURL == url {
-            cell.configure(url: url)}
+        let url = presenter.arrayImage[indexPath.item].urls.small
+        let _ = assemblyImageCell.buildImageCellModule(cell: cell, url: url)
+        cell.presenter.configureCell(url: url)
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        CGSize(width: 170, height: 200)
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
 //    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-//        15
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 15)
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        15
-//    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemsPerRow: CGFloat = 2
+        let paddingWidth: CGFloat = 20
+        let totalSpacing = (itemsPerRow + 1) * paddingWidth
+        let itemWidth = (collectionView.bounds.width - totalSpacing) / itemsPerRow
+        return CGSize(width: itemWidth, height: itemWidth * 1.5)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        20
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        10
+    }
 }
