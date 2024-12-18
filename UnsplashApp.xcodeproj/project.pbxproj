@@ -9,35 +9,85 @@
 /* Begin PBXBuildFile section */
 		271C932F2D0D9FF600CEAF35 /* ImageCacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C932E2D0D9FF600CEAF35 /* ImageCacheService.swift */; };
 		271C93312D0DA31800CEAF35 /* ImageLoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C93302D0DA31800CEAF35 /* ImageLoadService.swift */; };
+		271C93332D116D8700CEAF35 /* FavoriteImageslistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C93322D116D8700CEAF35 /* FavoriteImageslistViewController.swift */; };
+		271C93352D116F6B00CEAF35 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C93342D116F6B00CEAF35 /* CoreDataStack.swift */; };
+		271C93372D11726200CEAF35 /* FavoriteImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C93362D11726200CEAF35 /* FavoriteImageService.swift */; };
+		271C93392D117BEF00CEAF35 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C93382D117BEF00CEAF35 /* AuthViewController.swift */; };
+		278E080A2D11A5C900CFBA10 /* ImageCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08092D11A5C900CFBA10 /* ImageCellPresenter.swift */; };
+		278E080C2D11AE6600CFBA10 /* ImagesListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E080B2D11AE6600CFBA10 /* ImagesListAssembly.swift */; };
+		278E080E2D11B20F00CFBA10 /* ImageCellAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E080D2D11B20F00CFBA10 /* ImageCellAssembly.swift */; };
+		278E08142D11F9AA00CFBA10 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08132D11F9AA00CFBA10 /* Coordinator.swift */; };
+		278E08162D11FA5200CFBA10 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08152D11FA5200CFBA10 /* AppCoordinator.swift */; };
+		278E08182D11FB6700CFBA10 /* ImagesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08172D11FB6700CFBA10 /* ImagesListCoordinator.swift */; };
+		278E081A2D11FDF300CFBA10 /* FavoritesImagesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08192D11FDF300CFBA10 /* FavoritesImagesCoordinator.swift */; };
+		278E081C2D11FE5300CFBA10 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E081B2D11FE5300CFBA10 /* AuthCoordinator.swift */; };
+		278E081E2D11FFAA00CFBA10 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E081D2D11FFAA00CFBA10 /* TabBarCoordinator.swift */; };
+		278E08202D1206A000CFBA10 /* FavoriteImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E081F2D1206A000CFBA10 /* FavoriteImagesListPresenter.swift */; };
+		278E08222D12087700CFBA10 /* FavoriteImagesListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08212D12087700CFBA10 /* FavoriteImagesListAssembly.swift */; };
+		278E08242D12B7E100CFBA10 /* DetailImageCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08232D12B7E100CFBA10 /* DetailImageCoordinator.swift */; };
+		278E08272D12BDB600CFBA10 /* DetailImageAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08262D12BDB600CFBA10 /* DetailImageAssembly.swift */; };
+		278E08292D12BF3B00CFBA10 /* DetailImagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08282D12BF3B00CFBA10 /* DetailImagePresenter.swift */; };
+		278E082B2D12C11400CFBA10 /* DetailImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E082A2D12C11400CFBA10 /* DetailImageViewController.swift */; };
+		278E082D2D12F84F00CFBA10 /* AlertCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E082C2D12F84F00CFBA10 /* AlertCoordinator.swift */; };
+		278E08302D13014F00CFBA10 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 278E082F2D13014F00CFBA10 /* FirebaseAuth */; };
+		278E08322D13014F00CFBA10 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 278E08312D13014F00CFBA10 /* FirebaseFirestore */; };
+		278E08342D13018F00CFBA10 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08332D13018F00CFBA10 /* AuthService.swift */; };
+		278E08362D13061000CFBA10 /* AuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08352D13061000CFBA10 /* AuthAssembly.swift */; };
+		278E08382D13062000CFBA10 /* AuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278E08372D13062000CFBA10 /* AuthPresenter.swift */; };
+		278E083A2D130B3F00CFBA10 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 278E08392D130B3F00CFBA10 /* GoogleService-Info.plist */; };
 		2795AFDF2D021C310021FC48 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFDE2D021C310021FC48 /* AppDelegate.swift */; };
 		2795AFE12D021C310021FC48 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFE02D021C310021FC48 /* SceneDelegate.swift */; };
-		2795AFE32D021C310021FC48 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFE22D021C310021FC48 /* ViewController.swift */; };
+		2795AFE32D021C310021FC48 /* ImagesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFE22D021C310021FC48 /* ImagesListViewController.swift */; };
 		2795AFE62D021C310021FC48 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2795AFE52D021C310021FC48 /* Base */; };
 		2795AFE92D021C310021FC48 /* UnsplashApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFE72D021C310021FC48 /* UnsplashApp.xcdatamodeld */; };
 		2795AFEB2D021C320021FC48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2795AFEA2D021C320021FC48 /* Assets.xcassets */; };
 		2795AFEE2D021C320021FC48 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 2795AFED2D021C320021FC48 /* Base */; };
 		2795AFF62D021CC10021FC48 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFF52D021CC10021FC48 /* Model.swift */; };
-		2795AFF92D04859B0021FC48 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFF82D04859B0021FC48 /* MainPresenter.swift */; };
+		2795AFF92D04859B0021FC48 /* ImagesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFF82D04859B0021FC48 /* ImagesListPresenter.swift */; };
 		2795AFFC2D0486410021FC48 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFFB2D0486410021FC48 /* NetworkService.swift */; };
-		2795AFFE2D0487470021FC48 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFFD2D0487470021FC48 /* Cell.swift */; };
+		2795AFFE2D0487470021FC48 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2795AFFD2D0487470021FC48 /* ImageCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		271C932E2D0D9FF600CEAF35 /* ImageCacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheService.swift; sourceTree = "<group>"; };
 		271C93302D0DA31800CEAF35 /* ImageLoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoadService.swift; sourceTree = "<group>"; };
+		271C93322D116D8700CEAF35 /* FavoriteImageslistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageslistViewController.swift; sourceTree = "<group>"; };
+		271C93342D116F6B00CEAF35 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		271C93362D11726200CEAF35 /* FavoriteImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImageService.swift; sourceTree = "<group>"; };
+		271C93382D117BEF00CEAF35 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		278E08092D11A5C900CFBA10 /* ImageCellPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellPresenter.swift; sourceTree = "<group>"; };
+		278E080B2D11AE6600CFBA10 /* ImagesListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListAssembly.swift; sourceTree = "<group>"; };
+		278E080D2D11B20F00CFBA10 /* ImageCellAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellAssembly.swift; sourceTree = "<group>"; };
+		278E08132D11F9AA00CFBA10 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		278E08152D11FA5200CFBA10 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		278E08172D11FB6700CFBA10 /* ImagesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListCoordinator.swift; sourceTree = "<group>"; };
+		278E08192D11FDF300CFBA10 /* FavoritesImagesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesImagesCoordinator.swift; sourceTree = "<group>"; };
+		278E081B2D11FE5300CFBA10 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		278E081D2D11FFAA00CFBA10 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
+		278E081F2D1206A000CFBA10 /* FavoriteImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImagesListPresenter.swift; sourceTree = "<group>"; };
+		278E08212D12087700CFBA10 /* FavoriteImagesListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteImagesListAssembly.swift; sourceTree = "<group>"; };
+		278E08232D12B7E100CFBA10 /* DetailImageCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageCoordinator.swift; sourceTree = "<group>"; };
+		278E08262D12BDB600CFBA10 /* DetailImageAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageAssembly.swift; sourceTree = "<group>"; };
+		278E08282D12BF3B00CFBA10 /* DetailImagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImagePresenter.swift; sourceTree = "<group>"; };
+		278E082A2D12C11400CFBA10 /* DetailImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailImageViewController.swift; sourceTree = "<group>"; };
+		278E082C2D12F84F00CFBA10 /* AlertCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCoordinator.swift; sourceTree = "<group>"; };
+		278E08332D13018F00CFBA10 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		278E08352D13061000CFBA10 /* AuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAssembly.swift; sourceTree = "<group>"; };
+		278E08372D13062000CFBA10 /* AuthPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthPresenter.swift; sourceTree = "<group>"; };
+		278E08392D130B3F00CFBA10 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2795AFDB2D021C310021FC48 /* UnsplashApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnsplashApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2795AFDE2D021C310021FC48 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2795AFE02D021C310021FC48 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2795AFE22D021C310021FC48 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2795AFE22D021C310021FC48 /* ImagesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListViewController.swift; sourceTree = "<group>"; };
 		2795AFE52D021C310021FC48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2795AFE82D021C310021FC48 /* UnsplashApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UnsplashApp.xcdatamodel; sourceTree = "<group>"; };
 		2795AFEA2D021C320021FC48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2795AFED2D021C320021FC48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2795AFEF2D021C320021FC48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2795AFF52D021CC10021FC48 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		2795AFF82D04859B0021FC48 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		2795AFF82D04859B0021FC48 /* ImagesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesListPresenter.swift; sourceTree = "<group>"; };
 		2795AFFB2D0486410021FC48 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		2795AFFD2D0487470021FC48 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		2795AFFD2D0487470021FC48 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,12 +95,77 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				278E08302D13014F00CFBA10 /* FirebaseAuth in Frameworks */,
+				278E08322D13014F00CFBA10 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		278E08062D11A56500CFBA10 /* AuthModule */ = {
+			isa = PBXGroup;
+			children = (
+				271C93382D117BEF00CEAF35 /* AuthViewController.swift */,
+				278E08352D13061000CFBA10 /* AuthAssembly.swift */,
+				278E08372D13062000CFBA10 /* AuthPresenter.swift */,
+			);
+			path = AuthModule;
+			sourceTree = "<group>";
+		};
+		278E08072D11A57600CFBA10 /* FavoritesModule */ = {
+			isa = PBXGroup;
+			children = (
+				271C93322D116D8700CEAF35 /* FavoriteImageslistViewController.swift */,
+				278E08212D12087700CFBA10 /* FavoriteImagesListAssembly.swift */,
+				278E081F2D1206A000CFBA10 /* FavoriteImagesListPresenter.swift */,
+			);
+			path = FavoritesModule;
+			sourceTree = "<group>";
+		};
+		278E08082D11A59F00CFBA10 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				278E08092D11A5C900CFBA10 /* ImageCellPresenter.swift */,
+				2795AFFD2D0487470021FC48 /* ImageCell.swift */,
+				278E080D2D11B20F00CFBA10 /* ImageCellAssembly.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		278E08112D11F96300CFBA10 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				278E08132D11F9AA00CFBA10 /* Coordinator.swift */,
+				278E08122D11F99100CFBA10 /* Protocols */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		278E08122D11F99100CFBA10 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				278E08152D11FA5200CFBA10 /* AppCoordinator.swift */,
+				278E08172D11FB6700CFBA10 /* ImagesListCoordinator.swift */,
+				278E08192D11FDF300CFBA10 /* FavoritesImagesCoordinator.swift */,
+				278E081B2D11FE5300CFBA10 /* AuthCoordinator.swift */,
+				278E08232D12B7E100CFBA10 /* DetailImageCoordinator.swift */,
+				278E081D2D11FFAA00CFBA10 /* TabBarCoordinator.swift */,
+				278E082C2D12F84F00CFBA10 /* AlertCoordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		278E08252D12BD8D00CFBA10 /* DetailModule */ = {
+			isa = PBXGroup;
+			children = (
+				278E08282D12BF3B00CFBA10 /* DetailImagePresenter.swift */,
+				278E08262D12BDB600CFBA10 /* DetailImageAssembly.swift */,
+				278E082A2D12C11400CFBA10 /* DetailImageViewController.swift */,
+			);
+			path = DetailModule;
+			sourceTree = "<group>";
+		};
 		2795AFD22D021C310021FC48 = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +185,7 @@
 		2795AFDD2D021C310021FC48 /* UnsplashApp */ = {
 			isa = PBXGroup;
 			children = (
+				278E08392D130B3F00CFBA10 /* GoogleService-Info.plist */,
 				2795AFDE2D021C310021FC48 /* AppDelegate.swift */,
 				2795AFE02D021C310021FC48 /* SceneDelegate.swift */,
 				2795AFE42D021C310021FC48 /* Main.storyboard */,
@@ -77,6 +193,11 @@
 				2795AFEC2D021C320021FC48 /* LaunchScreen.storyboard */,
 				2795AFEF2D021C320021FC48 /* Info.plist */,
 				2795AFE72D021C310021FC48 /* UnsplashApp.xcdatamodeld */,
+				278E08252D12BD8D00CFBA10 /* DetailModule */,
+				278E08112D11F96300CFBA10 /* Coordinator */,
+				278E08082D11A59F00CFBA10 /* Cell */,
+				278E08072D11A57600CFBA10 /* FavoritesModule */,
+				278E08062D11A56500CFBA10 /* AuthModule */,
 				2795AFFA2D0486230021FC48 /* Services */,
 				2795AFF72D021CCF0021FC48 /* MainModule */,
 			);
@@ -86,10 +207,10 @@
 		2795AFF72D021CCF0021FC48 /* MainModule */ = {
 			isa = PBXGroup;
 			children = (
-				2795AFE22D021C310021FC48 /* ViewController.swift */,
+				2795AFE22D021C310021FC48 /* ImagesListViewController.swift */,
 				2795AFF52D021CC10021FC48 /* Model.swift */,
-				2795AFFD2D0487470021FC48 /* Cell.swift */,
-				2795AFF82D04859B0021FC48 /* MainPresenter.swift */,
+				278E080B2D11AE6600CFBA10 /* ImagesListAssembly.swift */,
+				2795AFF82D04859B0021FC48 /* ImagesListPresenter.swift */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -97,9 +218,12 @@
 		2795AFFA2D0486230021FC48 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				278E08332D13018F00CFBA10 /* AuthService.swift */,
 				2795AFFB2D0486410021FC48 /* NetworkService.swift */,
 				271C932E2D0D9FF600CEAF35 /* ImageCacheService.swift */,
 				271C93302D0DA31800CEAF35 /* ImageLoadService.swift */,
+				271C93342D116F6B00CEAF35 /* CoreDataStack.swift */,
+				271C93362D11726200CEAF35 /* FavoriteImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -120,6 +244,10 @@
 			dependencies = (
 			);
 			name = UnsplashApp;
+			packageProductDependencies = (
+				278E082F2D13014F00CFBA10 /* FirebaseAuth */,
+				278E08312D13014F00CFBA10 /* FirebaseFirestore */,
+			);
 			productName = UnsplashApp;
 			productReference = 2795AFDB2D021C310021FC48 /* UnsplashApp.app */;
 			productType = "com.apple.product-type.application";
@@ -148,6 +276,9 @@
 				Base,
 			);
 			mainGroup = 2795AFD22D021C310021FC48;
+			packageReferences = (
+				278E082E2D13014F00CFBA10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 2795AFDC2D021C310021FC48 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -163,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2795AFEB2D021C320021FC48 /* Assets.xcassets in Resources */,
+				278E083A2D130B3F00CFBA10 /* GoogleService-Info.plist in Resources */,
 				2795AFEE2D021C320021FC48 /* Base in Resources */,
 				2795AFE62D021C310021FC48 /* Base in Resources */,
 			);
@@ -175,16 +307,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2795AFF92D04859B0021FC48 /* MainPresenter.swift in Sources */,
+				271C93372D11726200CEAF35 /* FavoriteImageService.swift in Sources */,
+				278E08342D13018F00CFBA10 /* AuthService.swift in Sources */,
+				271C93332D116D8700CEAF35 /* FavoriteImageslistViewController.swift in Sources */,
+				278E081A2D11FDF300CFBA10 /* FavoritesImagesCoordinator.swift in Sources */,
+				278E080C2D11AE6600CFBA10 /* ImagesListAssembly.swift in Sources */,
+				278E08272D12BDB600CFBA10 /* DetailImageAssembly.swift in Sources */,
+				278E081E2D11FFAA00CFBA10 /* TabBarCoordinator.swift in Sources */,
+				2795AFF92D04859B0021FC48 /* ImagesListPresenter.swift in Sources */,
+				278E08182D11FB6700CFBA10 /* ImagesListCoordinator.swift in Sources */,
+				278E08202D1206A000CFBA10 /* FavoriteImagesListPresenter.swift in Sources */,
+				278E081C2D11FE5300CFBA10 /* AuthCoordinator.swift in Sources */,
 				2795AFF62D021CC10021FC48 /* Model.swift in Sources */,
-				2795AFE32D021C310021FC48 /* ViewController.swift in Sources */,
+				271C93352D116F6B00CEAF35 /* CoreDataStack.swift in Sources */,
+				2795AFE32D021C310021FC48 /* ImagesListViewController.swift in Sources */,
+				278E082D2D12F84F00CFBA10 /* AlertCoordinator.swift in Sources */,
 				271C93312D0DA31800CEAF35 /* ImageLoadService.swift in Sources */,
+				278E08382D13062000CFBA10 /* AuthPresenter.swift in Sources */,
+				278E08142D11F9AA00CFBA10 /* Coordinator.swift in Sources */,
 				2795AFDF2D021C310021FC48 /* AppDelegate.swift in Sources */,
 				2795AFE12D021C310021FC48 /* SceneDelegate.swift in Sources */,
-				2795AFFE2D0487470021FC48 /* Cell.swift in Sources */,
+				2795AFFE2D0487470021FC48 /* ImageCell.swift in Sources */,
+				278E08242D12B7E100CFBA10 /* DetailImageCoordinator.swift in Sources */,
+				278E082B2D12C11400CFBA10 /* DetailImageViewController.swift in Sources */,
+				278E080A2D11A5C900CFBA10 /* ImageCellPresenter.swift in Sources */,
+				278E080E2D11B20F00CFBA10 /* ImageCellAssembly.swift in Sources */,
+				271C93392D117BEF00CEAF35 /* AuthViewController.swift in Sources */,
+				278E08162D11FA5200CFBA10 /* AppCoordinator.swift in Sources */,
 				271C932F2D0D9FF600CEAF35 /* ImageCacheService.swift in Sources */,
 				2795AFE92D021C310021FC48 /* UnsplashApp.xcdatamodeld in Sources */,
+				278E08222D12087700CFBA10 /* FavoriteImagesListAssembly.swift in Sources */,
 				2795AFFC2D0486410021FC48 /* NetworkService.swift in Sources */,
+				278E08292D12BF3B00CFBA10 /* DetailImagePresenter.swift in Sources */,
+				278E08362D13061000CFBA10 /* AuthAssembly.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +562,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		278E082E2D13014F00CFBA10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		278E082F2D13014F00CFBA10 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 278E082E2D13014F00CFBA10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		278E08312D13014F00CFBA10 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 278E082E2D13014F00CFBA10 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		2795AFE72D021C310021FC48 /* UnsplashApp.xcdatamodeld */ = {

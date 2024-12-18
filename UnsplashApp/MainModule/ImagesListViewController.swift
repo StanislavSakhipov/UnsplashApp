@@ -7,18 +7,29 @@
 
 import UIKit
 
-final class ImageListViewController: UIViewController {
+final class ImagesListViewController: UIViewController {
 
-    private var presenter: ImagesListPresenter!
+    var presenter: ImagesListPresenter!
     private let viewCellIdentifier = "cellIdentifier"
     let assemblyImageCell = ImageCellAssembly()
+    private let activityIndicator = UIActivityIndicatorView(style: .large)
     
     private let searchTextField: UITextField = {
         let searchTextField = UITextField()
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
-        searchTextField.placeholder = "Введите любое слово для поиска картинки"
-        
+        //searchTextField.backgroundColor = .systemGray
+        searchTextField.placeholder = "Введите любое слово для поиска.."
         return searchTextField
+    }()
+    
+    private let searchButton: UIButton = {
+        let searchButton = UIButton()
+        searchButton.translatesAutoresizingMaskIntoConstraints = false
+        searchButton.setTitle("Искать", for: .normal)
+        searchButton.backgroundColor = .systemRed
+        searchButton.tintColor = .black
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        return searchButton
     }()
     
     private lazy var imagesCollection: UICollectionView = {
@@ -29,18 +40,16 @@ final class ImageListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.getImagesUrls()
         setupUI()
-        DispatchQueue.main.async {
-            self.imagesCollection.reloadData()
-        }
     }
     private func setupUI() {
         
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
         view.addSubview(searchTextField)
+        view.addSubview(searchButton)
         view.addSubview(imagesCollection)
-        imagesCollection.backgroundColor = .red
+        setupActivityIndicator()
+        imagesCollection.backgroundColor = .systemBackground
         imagesCollection.delegate = self
         imagesCollection.dataSource = self
         imagesCollection.register(ImageCell.self, forCellWithReuseIdentifier: viewCellIdentifier)
@@ -48,8 +57,13 @@ final class ImageListViewController: UIViewController {
         NSLayoutConstraint.activate([
             searchTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             searchTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            searchTextField.widthAnchor.constraint(equalToConstant: 80),
+            searchTextField.widthAnchor.constraint(equalToConstant: 300),
             searchTextField.heightAnchor.constraint(equalToConstant: 30),
+            
+            searchButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            searchButton.widthAnchor.constraint(equalToConstant: 70),
+            searchButton.heightAnchor.constraint(equalToConstant: 30),
             
             imagesCollection.topAnchor.constraint(equalTo: searchTextField.bottomAnchor, constant: 10),
             imagesCollection.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
@@ -57,10 +71,21 @@ final class ImageListViewController: UIViewController {
             imagesCollection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 10)
         ])
     }
-
+    
+    @objc private func searchButtonTapped() {
+        activityIndicator.startAnimating()
+        presenter.getImagesUrls(text: searchTextField.text ?? "")
+    }
+    
+    private func setupActivityIndicator() {
+        view.addSubview(activityIndicator)
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        activityIndicator.center = view.center
+    }
+    
 }
 
-extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ImagesListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.arrayImage.count
@@ -75,9 +100,9 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.imageDidSelected(indexPath: indexPath)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let itemsPerRow: CGFloat = 2
@@ -97,5 +122,16 @@ extension ImageListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         10
+    }
+}
+
+extension ImagesListViewController: MainViewProtocol {
+    func success() {
+        imagesCollection.reloadData()
+        activityIndicator.stopAnimating()
+    }
+    
+    func failure(error: any Error) {
+        // alert error
     }
 }

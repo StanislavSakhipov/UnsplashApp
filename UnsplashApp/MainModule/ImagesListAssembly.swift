@@ -7,12 +7,13 @@
 
 import Foundation
 
-final class MainAssembly {
-    static func createModule() -> ImageListViewController {
+final class ImagesListAssembly {
+    static func createImagesListModule(coordinator: ImagesListCoordinator) -> ImagesListViewController {
         let networkService = NetworkService()
-        let view = ImageListViewController()
-        let presenter = ImagesListPresenter(networkService: networkService, view: view)
+        let presenter = ImagesListPresenter(networkService : networkService, coordinator: coordinator)
+        let view = ImagesListViewController()
         presenter.view = view
+        view.presenter = presenter
         return view
     }
 }

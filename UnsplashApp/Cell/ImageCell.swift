@@ -8,81 +8,85 @@
 import Foundation
 import UIKit
 
-final class Cell: UICollectionViewCell {
+final class ImageCell: UICollectionViewCell {
     
-    var mainPresenter: ImagesListPresenter!
-    let imageLoadService = ImageLoadService()
-    var currentURL: String?
-    var presenter = CellPresenter(view: Cell?, mainPresenter: ImagesListPresenter!)
+    var presenter: ImageCellPresenterProtocol!
     
-    var isFavorite: Bool = false
-    
-//    private let labelImage: UILabel = {
-//        let labelImage = UILabel()
-//        labelImage.textColor = .black
-//        labelImage.textAlignment = .center
-//        return labelImage
-//    }()
+    private let labelImage: UILabel = {
+        let labelImage = UILabel()
+        labelImage.textColor = .black
+        labelImage.font = UIFont.systemFont(ofSize: 14, weight: .medium)
+        labelImage.textAlignment = .left
+        labelImage.translatesAutoresizingMaskIntoConstraints = false
+        labelImage.text = "Image name..."
+        return labelImage
+    }()
     
     private let favoriteButton: UIButton = {
         let favoriteButton = UIButton()
         favoriteButton.translatesAutoresizingMaskIntoConstraints = false
-        //favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
         favoriteButton.addTarget(self, action: #selector(setupFavoriteButtonTapped), for: .touchUpInside)
         return favoriteButton
     }()
     
     private var imageUnsplah: UIImageView = {
         let imageUnsplash = UIImageView()
-        imageUnsplash.contentMode = .scaleAspectFit
+        imageUnsplash.contentMode = .scaleAspectFill
+        imageUnsplash.clipsToBounds = true
+        imageUnsplash.translatesAutoresizingMaskIntoConstraints = false
         return imageUnsplash
-    }()
-    
-//    private var imageInfoStack: UIStackView = {
-//        
-//        let imageInfoStack = UIStackView()
-//        imageInfoStack.axis = .horizontal
-//        return imageInfoStack
-//    }()
-    private let imageStack: UIStackView = {
-        let imageStack = UIStackView()
-        imageStack.axis = .vertical
-        imageStack.distribution = .equalCentering
-        return imageStack
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.addSubview(imageStack)
-        imageStack.addArrangedSubview(imageUnsplah)
-        imageStack.addArrangedSubview(favoriteButton)
-        imageStack.translatesAutoresizingMaskIntoConstraints = false
+        setupUI()
+    }
+    
+    private func setupUI() {
+        contentView.addSubview(imageUnsplah)
+        contentView.addSubview(labelImage)
+        contentView.addSubview(favoriteButton)
+        
         NSLayoutConstraint.activate([
-            imageStack.widthAnchor.constraint(equalToConstant: 170)
+            imageUnsplah.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageUnsplah.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageUnsplah.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            imageUnsplah.heightAnchor.constraint(equalToConstant: 200),
+            
+            labelImage.topAnchor.constraint(equalTo: imageUnsplah.bottomAnchor, constant: 8),
+            labelImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            labelImage.trailingAnchor.constraint(lessThanOrEqualTo: favoriteButton.leadingAnchor, constant: -8),
+            labelImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            
+            favoriteButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
+            favoriteButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
+            favoriteButton.widthAnchor.constraint(equalToConstant: 30),
+            favoriteButton.heightAnchor.constraint(equalToConstant: 30)
         ])
-        
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(url: String) {
-        presenter.loadImage(url: url)
-    }
     
     func updateImage(image: UIImage?) {
-        imageUnsplah.image = image
+        DispatchQueue.main.async{
+            self.imageUnsplah.image = image
+        }
     }
     
     func updateHeartButton(isFavorite: Bool) {
-        let imageName = isFavorite ? "heat.fill" : "heart"
-        favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+        DispatchQueue.main.async {
+            if let imageName = isFavorite ? "heat.fill" : "heart" {
+                self.favoriteButton.setImage(UIImage(systemName: imageName), for: .normal)
+            }
+        }
     }
     
     @objc private func setupFavoriteButtonTapped() {
-        presenter.isFavorite.toggle()
+        presenter.toggleFavorite()
     }
     
 //    @objc func addToFavorites() {

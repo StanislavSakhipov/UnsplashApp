@@ -7,31 +7,38 @@
 
 import Foundation
 
-final class CellPresenter {
-    
-    let view: Cell
-    var isFavorite: Bool = false
+protocol ImageCellPresenterProtocol {
+    var cell: ImageCell? { get set }
+    var imageLoadService: ImageLoadServiceProtocol { get set }
+    var isFavorite: Bool { get set}
+    func configureCell(url: String)
+    func toggleFavorite()
+}
 
-    var mainPresenter: ImagesListPresenter!
-    let imageLoadService = ImageLoadService()
+final class ImageCellPresenter: ImageCellPresenterProtocol {
+   
+    weak var cell: ImageCell?
+    var imageLoadService: ImageLoadServiceProtocol
+    var isFavorite: Bool = false
     
-    init(view: Cell, mainPresenter: ImagesListPresenter!) {
-        self.view = view
-        self.mainPresenter = mainPresenter
+    init(cell: ImageCell, imageLoadService: ImageLoadServiceProtocol) {
+        self.cell = cell
+        self.imageLoadService = imageLoadService
     }
     
-    func loadImage() {
-        guard let urlImage = URL(string: url) else {return}
+    func configureCell(url: String) {
+        guard let urlImage = URL(string: url) else { return }
         imageLoadService.loadImage(url: urlImage) { [weak self] image in
-            guard let self = self else {return}
-            self.view.updateImage(image: image)
+            guard let self = self else { return }
+            self.cell?.updateImage(image: image)
+        }
     }
     
     func toggleFavorite() {
         isFavorite.toggle()
-        view.updateHeartButton(isFavorite: isFavorite)
+        cell?.updateHeartButton(isFavorite: isFavorite)
+        print(isFavorite)
+        // FavoriteImageService.shared.addFavoriteImage(imageID: id, imageURL: url)
     }
-    
-    
     
 }

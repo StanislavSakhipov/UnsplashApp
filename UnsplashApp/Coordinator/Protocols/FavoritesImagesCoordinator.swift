@@ -11,6 +11,7 @@ import UIKit
 final class FavoritesImagesCoordinator: Coordinator {
     
     var navigationController: UINavigationController
+    var childCoordinators: [Coordinator] = []
     
     
     init(navigationController: UINavigationController) {
@@ -18,9 +19,8 @@ final class FavoritesImagesCoordinator: Coordinator {
     }
     
     func start() {
-        let favoriteImagesCoordinator = SecondViewController()
-        navigationController.setViewControllers([favoriteImagesCoordinator], animated: false)
+        let favoriteImagesCoordinator = FavoriteImagesListAssembly.createFavoriteImageModule(coordinator: self)
+        navigationController.pushViewController(favoriteImagesCoordinator, animated: false)
     }
-    
 }
 

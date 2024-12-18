@@ -11,7 +11,6 @@ struct Welcome: Codable {
     let total, totalPages: Int
     let results: [Resultat]
     
-
     enum CodingKeys: String, CodingKey {
         case total
         case totalPages = "total_pages"
@@ -21,6 +20,7 @@ struct Welcome: Codable {
 
 struct Resultat: Codable {
     let urls: Urls
+    let id: String
 }
 
 struct Urls: Codable {

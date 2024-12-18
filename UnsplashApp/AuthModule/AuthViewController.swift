@@ -8,115 +8,122 @@
 import UIKit
 
 class AuthViewController: UIViewController {
+    
+    var presenter: AuthPresenter!
+    
+    private let logoImageView: UIImageView = {
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "logo")
+            imageView.contentMode = .scaleAspectFit
+            imageView.layer.cornerRadius = 10
+            imageView.clipsToBounds = true
+            return imageView
+        }()
+        
+        private let emailTextField: UITextField = {
+            let textField = UITextField()
+            textField.placeholder = "Email"
+            textField.borderStyle = .roundedRect
+            textField.layer.cornerRadius = 8
+            textField.backgroundColor = UIColor.systemGray6
+            textField.textColor = UIColor.darkGray
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UIColor.systemGray4.cgColor
+            textField.setLeftPaddingPoints(10)
+            return textField
+        }()
+        
+        private let passwordTextField: UITextField = {
+            let textField = UITextField()
+            textField.placeholder = "Пароль"
+            textField.isSecureTextEntry = true
+            textField.borderStyle = .roundedRect
+            textField.layer.cornerRadius = 8
+            textField.backgroundColor = UIColor.systemGray6
+            textField.textColor = UIColor.darkGray
+            textField.layer.borderWidth = 1
+            textField.layer.borderColor = UIColor.systemGray4.cgColor
+            textField.setLeftPaddingPoints(10)
+            return textField
+        }()
+        
+        private let loginButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("Вход", for: .normal)
+            button.backgroundColor = UIColor.systemBlue
+            button.setTitleColor(.white, for: .normal)
+            button.layer.cornerRadius = 10
+            button.layer.shadowColor = UIColor.systemBlue.cgColor
+            button.layer.shadowOpacity = 0.4
+            button.layer.shadowOffset = CGSize(width: 2, height: 2)
+            return button
+        }()
+        
+        private let registerButton: UIButton = {
+            let button = UIButton()
+            button.setTitle("Регистрация", for: .normal)
+            button.backgroundColor = UIColor.systemPink
+            button.setTitleColor(.white, for: .normal)
+            button.layer.cornerRadius = 10
+            button.layer.shadowColor = UIColor.systemGray.cgColor
+            button.layer.shadowOpacity = 0.4
+            button.layer.shadowOffset = CGSize(width: 2, height: 2)
+            return button
+        }()
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            view.backgroundColor = UIColor.systemMint
+            setupUI()
+            
+            loginButton.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+            registerButton.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)
+        }
+        
+        private func setupUI() {
+            let stackView = UIStackView(arrangedSubviews: [emailTextField, passwordTextField, loginButton, registerButton])
+            stackView.axis = .vertical
+            stackView.spacing = 20
+            stackView.alignment = .fill
+            stackView.distribution = .fillEqually
+            
+            view.addSubview(logoImageView)
+            view.addSubview(stackView)
+            
+            logoImageView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                logoImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40),
+                logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                logoImageView.widthAnchor.constraint(equalToConstant: 150),
+                logoImageView.heightAnchor.constraint(equalToConstant: 150)
+            ])
+            
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            NSLayoutConstraint.activate([
+                stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 40),
+                stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+                stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            ])
+        }
+        
+        @objc func handleLogin() {
 
-    private let regMainTitle = UILabel()
-    private let userNameLabel = UILabel()
-    private let userNameTextField = UITextField()
-    private let userPasswordLabel = UILabel()
-    private let userPasswordTextField = UITextField()
-    private let confirmPassLabel = UILabel()
-    private let confirmPassTextField = UITextField()
-    private let saveButton = UIButton()
-    private let imageBack = UIImageView()
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
+    guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+            presenter.handleLogin(email: email, password: password)
+        }
+        
+        @objc func handleRegistration() {
+            guard let email = emailTextField.text, let password = passwordTextField.text else { return }
+            presenter.handleRegistration(email: email, password: password)
+        }
+    }
 
-        // Do any additional setup after loading the view.
+    extension UITextField {
+        func setLeftPaddingPoints(_ amount: CGFloat) {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.height))
+            self.leftView = paddingView
+            self.leftViewMode = .always
+        }
     }
     
-    private func setupUI(){
-        view.addSubview(imageBack)
-        view.addSubview(regMainTitle)
-        view.addSubview(userNameLabel)
-        view.addSubview(userNameTextField)
-        view.addSubview(userPasswordLabel)
-        view.addSubview(userPasswordTextField)
-        view.addSubview(confirmPassLabel)
-        view.addSubview(confirmPassTextField)
-        view.addSubview(saveButton)
-        
-        regMainTitle.translatesAutoresizingMaskIntoConstraints = false
-        regMainTitle.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 40).isActive = true
-        regMainTitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 15).isActive = true
-        regMainTitle.text = "Registration Form"
-        regMainTitle.font = .systemFont(ofSize: 30)
-        regMainTitle.textColor = .white
-        
-        userNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        userNameLabel.topAnchor.constraint(equalTo: regMainTitle.bottomAnchor, constant: 20).isActive = true
-        userNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        userNameLabel.text = "Username"
-        userNameLabel.textColor = .white
-        
-        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        userNameTextField.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 15).isActive = true
-        userNameTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        userNameTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
-        userNameTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        userNameTextField.placeholder = "Please enter username"
-        userNameTextField.backgroundColor = .white
-        
-        userPasswordLabel.translatesAutoresizingMaskIntoConstraints = false
-        userPasswordLabel.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 20).isActive = true
-        userPasswordLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        userPasswordLabel.text = "Password"
-        userPasswordLabel.textColor = .white
-        
-        userPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        userPasswordTextField.topAnchor.constraint(equalTo: userPasswordLabel.bottomAnchor, constant: 15).isActive = true
-        userPasswordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        userPasswordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
-        userPasswordTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        userPasswordTextField.isSecureTextEntry = true
-        userPasswordTextField.placeholder = "Please enter password"
-        userPasswordTextField.backgroundColor = .white
-        
-        confirmPassLabel.translatesAutoresizingMaskIntoConstraints = false
-        confirmPassLabel.topAnchor.constraint(equalTo: userPasswordTextField.bottomAnchor, constant: 30).isActive = true
-        confirmPassLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        confirmPassLabel.text = "Confirm password"
-        confirmPassLabel.textColor = .white
-        
-        confirmPassTextField.translatesAutoresizingMaskIntoConstraints = false
-        confirmPassTextField.topAnchor.constraint(equalTo: confirmPassLabel.bottomAnchor, constant: 15).isActive = true
-        confirmPassTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 25).isActive = true
-        confirmPassTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -25).isActive = true
-        confirmPassTextField.heightAnchor.constraint(equalToConstant: 35).isActive = true
-        confirmPassTextField.isSecureTextEntry = true
-        confirmPassTextField.placeholder = "Please confirm password"
-        confirmPassTextField.backgroundColor = .white
-        
-        
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        saveButton.topAnchor.constraint(equalTo: confirmPassTextField.bottomAnchor, constant: 100).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        saveButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 140).isActive = true
-//        saveButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -40).isActive = true
-        saveButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        saveButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
-        saveButton.backgroundColor = .white
-        saveButton.setTitle("Save", for: .normal)
-        saveButton.setTitleColor(.black, for: .normal)
-        saveButton.addTarget(self, action: #selector(pressedButton), for: .touchUpInside)
-        
-        imageBack.translatesAutoresizingMaskIntoConstraints = false
-//        imageBack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-//        imageBack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        imageBack.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        imageBack.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        imageBack.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        imageBack.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        
-        imageBack.image = UIImage(named: "Image")
-        
-    }
-    
-    @objc public func pressedButton(){
-        print("Saved")
-    }
-    
-}
 

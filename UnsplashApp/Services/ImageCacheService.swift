@@ -8,7 +8,10 @@
 import Foundation
 import UIKit
 
-class ImageCacheService {
+final class ImageCacheService {
+    
+    static let shared = ImageCacheService()
+    private init(){}
     
     private let cache = NSCache<NSString, UIImage>()
     func getImage(key: String) -> UIImage? {

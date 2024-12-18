@@ -8,9 +8,17 @@
 import Foundation
 import UIKit
 
-class ImageLoadService {
+protocol ImageLoadServiceProtocol {
+    func loadImage(url: URL, completion: @escaping (UIImage?)->Void)
+}
+
+final class ImageLoadService: ImageLoadServiceProtocol {
     
-    private let cacheService = ImageCacheService()
+    static let shared = ImageLoadService()
+    
+    private init() {}
+    
+    private let cacheService = ImageCacheService.shared
     let networkService = NetworkService()
     var imageSaved: UIImage?
     
@@ -19,13 +27,10 @@ class ImageLoadService {
             let cacheKey = url.absoluteString
             if let cachedImage = self.cacheService.getImage(key: cacheKey) {
                 completion(cachedImage)
-                print("image cached")
                 return
             }
             self.networkService.getImage(url: url) { data, response in
                 guard let image = UIImage(data: data) else {return}
-                
-                print("image geted \(image)")
                 self.cacheService.saveImage(image: image, key: cacheKey)
                completion(image)
             }
